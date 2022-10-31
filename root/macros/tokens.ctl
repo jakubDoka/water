@@ -82,9 +82,7 @@ pub struct MacroToken {
 
 #[water_drop]
 pub spec TokenMacro {
-    fn "default" new() -> ^Self
-    fn "default" start(s: ^Self, lexer: MacroLexer) -> bool
+    fn "default" new(s: ^Self, lexer: MacroLexer)
     fn "default" next(s: ^Self, lexer: MacroLexer) -> Option[MacroToken]
-    fn "default" clear(s: ^Self)
     fn "default" drop(s: ^Self)
 }
