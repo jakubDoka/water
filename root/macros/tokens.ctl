@@ -4,7 +4,15 @@ use {
 
 #[water_drop]
 pub struct MacroLexer {
-    _addr: ^()
+    // replica of the rust layout
+    _addr1: ^()
+    _addr2: ^()
+    _addr3: ^()
+    _addr4: ^()
+    _addr5: ^()
+    _addr6: ^()
+    _addr7: ^()
+    _addr8: ^()
 }
 
 pub impl MacroLexer {
@@ -83,6 +91,6 @@ pub struct MacroToken {
 #[water_drop]
 pub spec TokenMacro {
     fn "default" new(s: ^Self, lexer: MacroLexer)
-    fn "default" next(s: ^Self, lexer: MacroLexer) -> Option[MacroToken]
-    fn "default" drop(s: ^Self)
+    fn "default" next(s: ^Self) -> Option[MacroToken]
+    fn "default" drop(s: ^Self) -> MacroLexer
 }
