@@ -1,5 +1,6 @@
 use {
     "./option"
+    "./marker"
 }
 
 #[water_drop]
@@ -16,11 +17,11 @@ pub struct MacroLexer {
 }
 
 pub impl MacroLexer {
-    fn next(ml: MacroLexer) -> MacroToken => ctl_lexer_next(ml)
+    fn next(ml: ^MacroLexer) -> MacroToken => ctl_lexer_next(ml)
 }
 
 #[compile_time]
-fn "default" ctl_lexer_next(lexer: MacroLexer) -> MacroToken extern
+fn "default" ctl_lexer_next(lexer: ^MacroLexer) -> MacroToken extern
 
 #[water_drop]
 pub enum MacroTokenKind {
@@ -78,15 +79,21 @@ pub enum MacroTokenKind {
     None
 }
 
+impl Copy for MacroTokenKind
+
 pub struct Span {
     pub start: u32
     pub end: u32
 }
 
+impl Copy for Span
+
 pub struct MacroToken {
     pub kind: MacroTokenKind
     pub span: Span
 }
+
+impl Copy for MacroToken
 
 #[water_drop]
 pub spec TokenMacro {
