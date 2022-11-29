@@ -3,9 +3,9 @@ pub fn "default" free(ptr: ^()) extern
 pub fn "default" memcpy(dst: ^mut (), src: ^(), size: uint) extern
 
 pub struct [T] Vec {
-    ptr: ^mut T;
-    len: uint;
-    cap: uint;
+    ptr: ^mut T
+    len: uint
+    cap: uint
 };
 
 pub impl [T] Vec[T] {

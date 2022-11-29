@@ -5,6 +5,4 @@ pub fn [T] write(dest: ^mut T, value: T) {
 }
 
 #[no_moves]
-pub fn [T] read(src: ^T) -> T {
-    *src
-}
+pub fn [T] read(src: ^T) -> T => *src
