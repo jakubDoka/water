@@ -1,3 +1,8 @@
+use {
+    "./marker"
+    "./ptr"
+}
+
 pub fn "default" malloc(size: uint) -> ^mut () extern
 pub fn "default" free(ptr: ^()) extern
 pub fn "default" memcpy(dst: ^mut (), src: ^(), size: uint) extern
@@ -42,11 +47,23 @@ pub impl [T] Vec[T] {
         self.ptr = cast(new_alloc)
     }
 
-    fn get(self: ^Self, index: uint) -> ^T {
+    fn get_ptr(self: ^Self, index: uint) -> ^T {
         cast(cast\[^mut T, uint](self.ptr) + index * sizeof\[T]())
     }
 
-    fn get_mut(self: ^mut Self, index: uint) -> ^mut T {
+    fn get_mut_ptr(self: ^mut Self, index: uint) -> ^mut T {
         cast(cast\[^mut T, uint](self.ptr) + index * sizeof\[T]())
+    }
+}
+
+impl [T] Drop for Vec[T] {
+    fn drop(self: ^mut Self) {
+        let mut i = 0
+        loop if i == self.len => break
+        else {
+            ptr\read(self.get_ptr(i))
+            i = i + 1
+        }
+        free(cast(self.ptr))
     }
 }
