@@ -34,7 +34,7 @@ pub impl [T] Vec[T] {
         if self.len == self.cap {
             self.grow()
         }
-        *self.get(self.len - 1) = val
+        ptr\write(self.get_mut_ptr(self.len), val)
         self.len = self.len + 1
     }
 
