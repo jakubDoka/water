@@ -98,6 +98,6 @@ impl Copy for MacroToken
 #[water_drop]
 pub spec TokenMacro {
     fn "default" new(s: ^Self, lexer: MacroLexer)
-    fn "default" next(s: ^Self) -> Option[MacroToken]
+    fn "default" next(s: ^Self) -> Option\[MacroToken]
     fn "default" drop(s: ^Self) -> MacroLexer
 }

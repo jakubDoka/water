@@ -13,7 +13,7 @@ pub struct [T] Vec {
     cap: uint
 };
 
-pub impl [T] Vec[T] {
+pub impl [T] Vec\[T] {
     fn new() -> Self {
         \{
             ptr: cast(0)
@@ -56,7 +56,7 @@ pub impl [T] Vec[T] {
     }
 }
 
-impl [T] Drop for Vec[T] {
+impl [T] Drop for Vec\[T] {
     fn drop(self: ^mut Self) {
         let mut i = 0
         loop if i == self.len => break
