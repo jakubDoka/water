@@ -1,1 +1,5 @@
 root: "root.ctl"
+
+deps {
+    git water "github.com/jakubDoka/water"
+}
