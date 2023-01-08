@@ -1,30 +1,8 @@
 use {
     "./option"
     "./marker"
-}
-
-#[water_drop]
-pub struct MacroLexer {
-    // replica of the rust layout
-    _addr1: ^()
-    _addr2: ^()
-    _addr3: ^()
-    _addr4: ^()
-    _addr5: ^()
-    _addr6: ^()
-    _addr7: ^()
-    _addr8: ^()
-}
-
-pub impl MacroLexer {
-    fn next(ml: ^MacroLexer) -> MacroToken => ctl_lexer_next(ml)
-}
-
-#[compile_time]
-fn "default" ctl_lexer_next(lexer: ^MacroLexer) -> MacroToken extern
-
-#[water_drop]
-pub enum MacroTokenKind {
+}#[water_drop]
+pub enum TokenKind {
     Func
     Type
     Return
@@ -78,26 +56,14 @@ pub enum MacroTokenKind {
     Eof
     None
 }
-
-impl Copy for MacroTokenKind
-
+impl Copy for TokenKind
 pub struct Span {
     pub start: u32
     pub end: u32
 }
-
 impl Copy for Span
-
-pub struct MacroToken {
-    pub kind: MacroTokenKind
+pub struct Token {
+    pub kind: TokenKind
     pub span: Span
 }
-
-impl Copy for MacroToken
-
-#[water_drop]
-pub spec TokenMacro {
-    fn "default" new(s: ^Self, lexer: MacroLexer)
-    fn "default" next(s: ^Self) -> Option\[MacroToken]
-    fn "default" drop(s: ^Self) -> MacroLexer
-}
+impl Copy for Token
