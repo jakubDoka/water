@@ -1,11 +1,8 @@
 use {
     "./marker"
     "./ptr"
+    "./c"
 }
-
-pub fn malloc(size: uint) -> ^mut () extern
-pub fn free(ptr: ^()) extern
-pub fn memcpy(dst: ^mut (), src: ^(), size: uint) extern
 
 pub struct [T] Vec {
     mut ptr: ^mut T
@@ -21,7 +18,7 @@ impl [T] Vec\[T] {
     }
     
     fn with_capacity(cap: uint) -> Self {
-        \{ptr: cast(malloc(cap * sizeof\[T]())),
+        \{ptr: cast(c\malloc(cap * sizeof\[T]())),
             len: 0,
             cap}
     }
@@ -35,12 +32,9 @@ impl [T] Vec\[T] {
     }
     
     fn grow(self: ^mut Self) {
-        let next_len = if self.cap == 0 => 1
+        self.cap = if self.cap == 0 => 1
         else => self.cap * 2
-        let new_alloc = malloc(next_len * sizeof\[T]())
-        memcpy(new_alloc, cast(self.ptr), self.len * sizeof\[T]())
-        free(cast(self.ptr))
-        self.ptr = cast(new_alloc)
+        self.ptr = cast(realloc(cast(self.ptr), self.cap * sizeof\[T]()))
     }
     
     fn get_ptr(self: ^Self, index: uint) -> ^T {
@@ -60,6 +54,6 @@ impl [T] Drop for Vec\[T] {
             ptr\read(self.get_ptr(i))
             i = i + 1
         }
-        free(cast(self.ptr))
+        c\free(cast(self.ptr))
     }
 }
