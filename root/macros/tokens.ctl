@@ -1,7 +1,9 @@
 use {
     "./option"
     "./marker"
-}#[water_drop]
+}
+
+#[water_drop]
 pub enum TokenKind {
     Func
     Type
@@ -56,14 +58,19 @@ pub enum TokenKind {
     Eof
     None
 }
+
 impl Copy for TokenKind
+
 pub struct Span {
     pub start: u32
     pub end: u32
 }
+
 impl Copy for Span
+
 pub struct Token {
     pub kind: TokenKind
     pub span: Span
 }
+
 impl Copy for Token

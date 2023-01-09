@@ -1,1 +1,2 @@
-moist: trueroot: "root.ctl"
+moist: true
+root: "root.ctl"
