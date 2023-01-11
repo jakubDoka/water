@@ -1,6 +1,3 @@
-#[water_drop]
-pub fn exit(code: u32) extern
-
 pub fn malloc(size: uint) -> ^mut () extern
 
 pub fn free(ptr: ^mut ()) extern
