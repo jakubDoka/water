@@ -22,14 +22,15 @@ pub impl [T] Vec\[T] {
 	fn push(self: ^mut Self, val: T) {
 		if self.len == self.cap {
 			self.grow()
-		} 
+		}
 		ptr\write(self.get_mut_ptr(self.len), val)
 		self.len = self.len + 1
 	}
 
 	fn grow(self: ^mut Self) {
-		self.cap = if self.cap == 0 => 1
+		let cap = if self.cap == 0 => 8
 		else => self.cap * 2
+		self.cap = cap
 		self.ptr = cast(realloc(cast(self.ptr), self.cap * sizeof\[T]()))
 	}
 
@@ -40,6 +41,8 @@ pub impl [T] Vec\[T] {
 	fn get_mut_ptr(self: ^mut Self, index: uint) -> ^mut T {
 		cast(cast\[^mut T, uint](self.ptr) + index * sizeof\[T]())
 	}
+
+	fn len(self: ^Self) -> uint => self.len
 }
 
 impl [T] Drop for Vec\[T] {
