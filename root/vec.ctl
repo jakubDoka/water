@@ -35,11 +35,11 @@ pub impl [T] Vec\[T] {
 	}
 
 	fn get_ptr(self: ^Self, index: uint) -> ^T {
-		cast(cast\[^mut T, uint](self.ptr) + index * sizeof\[T]())
+		cast(cast\[uint](self.ptr) + index * sizeof\[T]())
 	}
 
 	fn get_mut_ptr(self: ^mut Self, index: uint) -> ^mut T {
-		cast(cast\[^mut T, uint](self.ptr) + index * sizeof\[T]())
+		cast(cast\[uint](self.ptr) + index * sizeof\[T]())
 	}
 
 	fn len(self: ^Self) -> uint => self.len
